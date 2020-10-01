@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+#  picka-api:
+#    container_name: search-server
+#    image: pickstudio/picka-api:latest
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#    command: "tail -f /dev/null"
+#    env_file:
+#      - ./.env
+
+  sidecar-filebeat:
+    container_name: sidecar-filebeat
+    image: elastic/filebeat:7.8.1
+    user: root
+    volumes:
+      - ./docker/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./log:/usr/share/filebeat/logs
